@@ -1,0 +1,68 @@
+body {
+  background-color: rgba(41, 41, 41, 1);
+  color: rgba(196, 196, 196, 1);
+  font-family: Roboto, sans-serif;
+  font-weight: 300;
+}
+
+/* .row {
+  border: 1px solid white;
+} */
+
+/* header */
+
+.name {
+  margin-top: 45px;
+  width: 562px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.app-name {
+  text-align: right;
+  font-weight: 400;
+  font-size: 4rem;
+  margin-bottom: 5px;
+  line-height: 2.25rem;
+}
+
+.app-subtitle {
+  text-align: right;
+  margin-top: 0;
+  padding-right: 10px;
+  font-size: 0.75rem;
+}
+
+.instructions {
+  text-align: center;
+  height: 75px;
+  background-color: rgba(59, 59, 59, 1);
+  border-top: 1px solid rgba(115, 115, 115, 1);
+  border-bottom: 1px solid rgba(115, 115, 115, 1);
+}
+
+.instruct {
+  margin-top: 27px;
+}
+
+span {
+  font-size: 0.8rem;
+  padding: 0 20px;
+}
+
+/* main */
+
+/* palette */
+.palette {
+  height: 200px;
+}
+
+/* img-preview */
+.img-preview {
+  height: 300px;
+}
+
+/* saved-palettes */
+.saved-palettes {
+  height: 500px;
+}

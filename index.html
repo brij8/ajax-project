@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300;1,400&display=swap"
+    rel="stylesheet">
   <title>AJAX Project</title>
   <link rel="icon" href="images/favicon.ico">
   <link rel="stylesheet" href="css/reset.css">
@@ -10,10 +14,35 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+
   <header>
+    <div class="row">
+      <div class="name">
+        <h1 class="app-name">Color Palette Maker</h1>
+        <p class="app-subtitle">powered by colormind.io</p>
+      </div>
+    </div>
+    <div class="row instruct-bar">
+      <div class="instructions">
+        <p class="instruct">
+          <span>1. upload an image</span>
+          <span>2. generate and adjust your palette</span>
+          <span>3. save it, share it</span></p>
+      </div>
+    </div>
   </header>
+
   <main>
+
+    <section class="row palette"></section>
+
+    <section class="row img-preview"></section>
+
+    <section class="row saved-palettes"></section>
+
   </main>
+
+
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>
