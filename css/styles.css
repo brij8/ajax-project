@@ -12,7 +12,7 @@ body {
 /* header */
 
 .name {
-  margin-top: 45px;
+  margin-top: 5%;
   width: 562px;
   margin-left: auto;
   margin-right: auto;
@@ -33,16 +33,24 @@ body {
   font-size: 0.75rem;
 }
 
-.instructions {
-  text-align: center;
-  height: 75px;
-  background-color: rgba(59, 59, 59, 1);
+.instruct-bar {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
   border-top: 1px solid rgba(115, 115, 115, 1);
   border-bottom: 1px solid rgba(115, 115, 115, 1);
 }
 
+.instructions {
+  text-align: center;
+  background-color: rgba(59, 59, 59, 1);
+  margin: 0 52px;
+}
+
 .instruct {
-  margin-top: 27px;
+  margin: 0;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 span {
