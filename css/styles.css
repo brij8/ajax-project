@@ -119,7 +119,7 @@ button:hover {
 }
 
 .src-img {
-  height: 100%;
+  width: 100%;
 }
 
 /* saved-palettes */
@@ -141,4 +141,38 @@ button:hover {
   text-align: center;
   background-color: rgba(59, 59, 59, 1);
   margin: 0 52px;
+}
+
+/* @media sizing */
+
+@media screen and (max-width: 800px) {
+  .instruct-bar {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .app-name {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .app-subtitle {
+    font-size: 0.5rem;
+    margin-top: -15px;
+    padding-right: 5px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .name {
+    margin-left: -170px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .name-row {
+    border-bottom: 1px solid rgba(115, 115, 115, 1);
+  }
 }
