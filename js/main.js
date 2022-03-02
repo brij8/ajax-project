@@ -16,18 +16,28 @@ const fileTypeOptions = {
 };
 
 async function getFile() {
-  // open file picker
-  var [fileHandle] = await window.showOpenFilePicker(fileTypeOptions);
-
-  // get file contents
-  const srcImage = await fileHandle.getFile();
 
   // assign img element to var
   var imgRef = document.querySelector('.src-img');
 
-  // make a URL for image file on local dir
-  var imgURL = URL.createObjectURL(srcImage);
+  try {
+    // open file picker
+    var [fileHandle] = await window.showOpenFilePicker(fileTypeOptions);
 
-  // assign that URL to src of img element
-  imgRef.src = imgURL;
+    // get file contents
+    const srcImage = await fileHandle.getFile();
+
+    // make a URL for image file on local dir
+    var imgURL = URL.createObjectURL(srcImage);
+
+    // assign that URL to src of img element
+    imgRef.src = imgURL;
+
+  } catch (e) {
+    if (e instanceof DOMException) {
+      imgRef.src = 'images/srcimgref.png';
+    } else {
+      throw e;
+    }
+  }
 }
