@@ -2,7 +2,7 @@
 var $upload = document.querySelector('.upload');
 $upload.addEventListener('click', getFile);
 
-const fileOptions = {
+const fileTypeOptions = {
   types: [
     {
       description: 'Images',
@@ -17,7 +17,7 @@ const fileOptions = {
 
 async function getFile() {
   // open file picker
-  var [fileHandle] = await window.showOpenFilePicker(fileOptions);
+  var [fileHandle] = await window.showOpenFilePicker(fileTypeOptions);
 
   // get file contents
   const srcImage = await fileHandle.getFile();
