@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300;1,400&display=swap"
+    rel="stylesheet">
   <title>AJAX Project</title>
   <link rel="icon" href="images/favicon.ico">
   <link rel="stylesheet" href="css/reset.css">
@@ -10,11 +14,60 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+
   <header>
+    <div class="row name-row">
+      <div class="name">
+        <h1 class="app-name">Color Palette Maker</h1>
+        <p class="app-subtitle">powered by colormind.io</p>
+      </div>
+    </div>
+    <!-- the whole 'instruction bar' stuff should all go away on mobile scaling -->
+    <div class="row instruct-bar">
+      <div class="instructions">
+        <p class="instruct">
+          <span>1. upload an image</span>
+          <span>2. generate and adjust your palette</span>
+          <span>3. save it, share it</span></p>
+      </div>
+    </div>
   </header>
+
   <main>
+    <!-- color swatches and generate, save, & upload buttons -->
+    <section class="row palette">
+      <div class="colors">
+        <!-- i dont know yet whether i have to build this element from scratch
+        or if the api loads in a whole module thing -->
+      </div>
+      <button class="upload">upload</button>
+    </section>
+
+    <!-- just a smaller version of the source file for reference -->
+    <!-- maybe put upload button in here, under the divider line -->
+    <section class="row img-preview">
+      <div class="line"></div>
+      <div class="image">
+        <img src="images/srcimgref.png" class="src-img">
+      </div>
+    </section>
+
+    <!-- entire saved palettes gallery and delete & export buttons -->
+    <section class="row saved-palettes hidden">
+      <div class="sp-wrap">
+        <div class="save-box">
+          <h2>Saved Palettes</h2>
+        </div>
+      </div>
+    </section>
+
   </main>
+
+
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
+
+  <!-- small footer with notes & links -->
+  <footer></footer>
 </body>
 </html>

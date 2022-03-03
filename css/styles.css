@@ -1,0 +1,175 @@
+body {
+  background-color: rgba(41, 41, 41, 1);
+  color: rgba(196, 196, 196, 1);
+  font-family: Roboto, sans-serif;
+  font-weight: 300;
+}
+
+footer {
+  width: 100%;
+  height: 200px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* ------------ header ------------ */
+
+.name {
+  margin-top: 5%;
+  width: 562px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.app-name {
+  text-align: right;
+  font-weight: 400;
+  font-size: 4rem;
+  margin-bottom: 10px;
+  line-height: 2.25rem;
+}
+
+.app-subtitle {
+  text-align: right;
+  margin-top: 0;
+  padding-right: 10px;
+  font-size: 0.75rem;
+}
+
+.instruct-bar {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  border-top: 1px solid rgba(115, 115, 115, 1);
+  border-bottom: 1px solid rgba(115, 115, 115, 1);
+}
+
+.instructions {
+  text-align: center;
+  background-color: rgba(59, 59, 59, 1);
+  margin: 0 52px;
+}
+
+.instruct {
+  margin: 0;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+span {
+  font-size: 0.8rem;
+  padding: 0 20px;
+}
+
+/* ------------- main ------------ */
+
+button {
+  width: 115px;
+  height: 35px;
+  color: rgba(115, 115, 115, 1);
+  background-color: rgba(59, 59, 59, 1);
+  border: 1px solid rgba(115, 115, 115, 1);
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+button:hover {
+  color: rgba(196, 196, 196, 1);
+  background-color: rgb(80, 78, 78);
+}
+
+/* -------------- palette ------------- */
+
+.palette {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 300px;
+}
+
+.colors {
+  height: 250px;
+  width: 700px;
+}
+
+/* ------------ img-preview --------------- */
+.img-preview {
+  height: 350px;
+}
+
+.line {
+  border-top: 1px solid rgba(115, 115, 115, 1);
+  width: 60%;
+  margin-top: 25px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.image {
+  height: 250px;
+  width: 400px;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.src-img {
+  width: 100%;
+}
+
+/* ------------ saved-palettes ------------- */
+
+.saved-palettes {
+  height: 500px;
+}
+
+.sp-wrap {
+  height: 100px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  border-top: 1px solid rgba(115, 115, 115, 1);
+  border-bottom: 1px solid rgba(115, 115, 115, 1);
+}
+
+.save-box {
+  text-align: center;
+  background-color: rgba(59, 59, 59, 1);
+  margin: 0 52px;
+}
+
+/* -----------------  @media sizing  ---------------- */
+
+@media screen and (max-width: 800px) {
+  .instruct-bar {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .app-name {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .app-subtitle {
+    font-size: 0.5rem;
+    margin-top: -15px;
+    padding-right: 5px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .name {
+    margin-left: -170px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .name-row {
+    border-bottom: 1px solid rgba(115, 115, 115, 1);
+  }
+}
