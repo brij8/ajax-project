@@ -328,6 +328,10 @@ span {
     border-top-width: 1px;
   }
 
+  .upload {
+    border: 1px solid rgb(122 122 122);
+  }
+
   .image {
     width: 300px;
   }
@@ -351,10 +355,12 @@ span {
   .generate {
     margin-left: 25px;
     margin-right: 35px;
+    border-color: rgb(44 116 147);
   }
 
   .save {
     margin-left: 30px;
+    border-color: rgb(68 141 84);
   }
 
   .codes {

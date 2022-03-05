@@ -43,45 +43,48 @@ async function getFile() {
   }
 }
 
-// var url = 'http://colormind.io/api/';
-// var data = {
-//   model: 'default',
-//   input: ['N', 'N', 'N', 'N', 'N']
-//   // 'black-forest.jpg'
-//   // $srcimg.getAttribute('src')
-//   // input: ['N', 'N', 'N', 'N', 'N']
-// };
+var $gen = document.querySelector('.generate');
+$gen.addEventListener('click', genPalette);
 
-// var http = new XMLHttpRequest();
+function genPalette(event) {
 
-// http.onreadystatechange = function () {
-//   if (http.readyState === 4 && http.status === 200) {
-//     var palette = JSON.parse(http.responseText).result;
-//     swatches(palette);
-//   }
-// };
-// http.open('POST', url, true);
-// http.send(JSON.stringify(data));
+  var url = 'http://colormind.io/api/';
+  var data = {
+    model: 'default',
+    input: ['N', 'N', 'N', 'N', 'N']
+  };
 
-// function swatches(palette) {
-//   var $color1 = document.querySelector('.color1');
-//   var $code1 = document.querySelector('.code1');
-//   $code1.textContent = palette[0];
-//   $color1.setAttribute('style', 'background-color: rgba(' + palette[0][0] + ', ' + palette[0][1] + ', ' + palette[0][2] + ', 1)');
-//   var $color2 = document.querySelector('.color2');
-//   var $code2 = document.querySelector('.code2');
-//   $code2.textContent = palette[1];
-//   $color2.setAttribute('style', 'background-color: rgba(' + palette[1][0] + ', ' + palette[1][1] + ', ' + palette[1][2] + ', 1)');
-//   var $color3 = document.querySelector('.color3');
-//   var $code3 = document.querySelector('.code3');
-//   $code3.textContent = palette[2];
-//   $color3.setAttribute('style', 'background-color: rgba(' + palette[2][0] + ', ' + palette[2][1] + ', ' + palette[2][2] + ', 1)');
-//   var $color4 = document.querySelector('.color4');
-//   var $code4 = document.querySelector('.code4');
-//   $code4.textContent = palette[3];
-//   $color4.setAttribute('style', 'background-color: rgba(' + palette[3][0] + ', ' + palette[3][1] + ', ' + palette[3][2] + ', 1)');
-//   var $color5 = document.querySelector('.color5');
-//   var $code5 = document.querySelector('.code5');
-//   $code5.textContent = palette[4];
-//   $color5.setAttribute('style', 'background-color: rgba(' + palette[4][0] + ', ' + palette[4][1] + ', ' + palette[4][2] + ', 1)');
-// }
+  var http = new XMLHttpRequest();
+
+  http.onreadystatechange = function () {
+    if (http.readyState === 4 && http.status === 200) {
+      var palette = JSON.parse(http.responseText).result;
+      swatches(palette);
+    }
+  };
+  http.open('POST', url, true);
+  http.send(JSON.stringify(data));
+
+  function swatches(palette) {
+    var $color1 = document.querySelector('.color1');
+    var $code1 = document.querySelector('.code1');
+    $code1.textContent = palette[0][0] + ', ' + palette[0][1] + ', ' + palette[0][2];
+    $color1.setAttribute('style', 'background-color: rgba(' + palette[0][0] + ', ' + palette[0][1] + ', ' + palette[0][2] + ', 1)');
+    var $color2 = document.querySelector('.color2');
+    var $code2 = document.querySelector('.code2');
+    $code2.textContent = palette[1][0] + ', ' + palette[1][1] + ', ' + palette[1][2];
+    $color2.setAttribute('style', 'background-color: rgba(' + palette[1][0] + ', ' + palette[1][1] + ', ' + palette[1][2] + ', 1)');
+    var $color3 = document.querySelector('.color3');
+    var $code3 = document.querySelector('.code3');
+    $code3.textContent = palette[2][0] + ', ' + palette[2][1] + ', ' + palette[2][2];
+    $color3.setAttribute('style', 'background-color: rgba(' + palette[2][0] + ', ' + palette[2][1] + ', ' + palette[2][2] + ', 1)');
+    var $color4 = document.querySelector('.color4');
+    var $code4 = document.querySelector('.code4');
+    $code4.textContent = palette[3][0] + ', ' + palette[3][1] + ', ' + palette[3][2];
+    $color4.setAttribute('style', 'background-color: rgba(' + palette[3][0] + ', ' + palette[3][1] + ', ' + palette[3][2] + ', 1)');
+    var $color5 = document.querySelector('.color5');
+    var $code5 = document.querySelector('.code5');
+    $code5.textContent = palette[4][0] + ', ' + palette[4][1] + ', ' + palette[4][2];
+    $color5.setAttribute('style', 'background-color: rgba(' + palette[4][0] + ', ' + palette[4][1] + ', ' + palette[4][2] + ', 1)');
+  }
+}
