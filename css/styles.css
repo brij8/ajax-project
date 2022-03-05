@@ -42,14 +42,33 @@ footer {
   width: 80%;
   margin-left: auto;
   margin-right: auto;
-  border-top: 1px solid rgba(115, 115, 115, 1);
-  border-bottom: 1px solid rgba(115, 115, 115, 1);
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-image:
+    linear-gradient(
+      0.25turn,
+      #2929294d,
+      #ff000042,
+      #ffa5003b,
+      #ffff0036,
+      #00800033,
+      #0000ff47,
+      #2929294d
+    ) 1;
 }
 
 .instructions {
   text-align: center;
-  background-color: rgba(59, 59, 59, 1);
   margin: 0 52px;
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgb(34 34 34),
+      rgb(30 30 30),
+      rgb(34 34 34),
+      transparent
+    );
 }
 
 .instruct {
@@ -183,11 +202,23 @@ span {
 }
 
 .line {
-  border-top: 1px solid rgba(115, 115, 115, 1);
-  width: 60%;
+  width: 70%;
   margin-top: 25px;
   margin-left: auto;
   margin-right: auto;
+  border-top-width: 2px;
+  border-top-style: solid;
+  border-image:
+    linear-gradient(
+      0.25turn,
+      #2929294d,
+      #ff000042,
+      #ffa5003b,
+      #ffff0036,
+      #00800033,
+      #0000ff47,
+      #2929294d
+    ) 1;
 }
 
 .upload-btn {
@@ -250,7 +281,17 @@ span {
   }
 
   .name-row {
-    border-bottom: 1px solid rgba(115, 115, 115, 1);
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-image:
+      linear-gradient(
+        0.25turn,
+        #ff000042,
+        #ffa5003b,
+        #ffff0036,
+        #00800033,
+        #0000ff47
+      ) 1;
   }
 }
 
@@ -267,6 +308,24 @@ span {
 
   .name {
     margin-left: -220px;
+  }
+
+  .name-row {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-image:
+      linear-gradient(
+        0.25turn,
+        #ff000042,
+        #ffa5003b,
+        #ffff0036,
+        #00800033,
+        #0000ff47
+      ) 1;
+  }
+
+  .line {
+    border-top-width: 1px;
   }
 
   .image {
