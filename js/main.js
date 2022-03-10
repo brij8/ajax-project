@@ -41,7 +41,7 @@ async function getFile() {
   }
 }
 
-// ***** color picker: click swatch to bring up picker
+// ***** color picker: click swatch to bring up picker *****
 // close picker to assign color to swatch & color-code to code span
 
 // grab the picker & the wrapper
@@ -49,61 +49,67 @@ var $colorpicker = document.getElementById('colorpicker');
 var $swatch1 = document.querySelector('.color1');
 var $codes = document.querySelector('.codes');
 
-// picker.oninput (when selecting a color from picker)
+// picker.oninput (open and then when selecting a color from picker)
 // picker event value assigned to wrapper background
 $colorpicker.oninput = function () {
   $swatch1.style.backgroundColor = event.target.value;
 };
 
 // picker.onchange (when clicking away/closing picker)
-// picker value assigned to wrapper background
+// assign the color-code to the 'codes' span
 $colorpicker.onchange = function () {
-  $swatch1.style.backgroundColor = $colorpicker.value;
-  // also assign the color-code to the 'codes' span
-  $codes.textContent = $swatch1.style.backgroundColor.slice(3);
+  $codes.textContent = $swatch1.style.backgroundColor.slice(4, $swatch1.style.backgroundColor.length - 1);
 };
 
-// ***** hold buttons: on click-select, assign swatch color code to matching index in input array *****
-// ***** hold buttons: on click-deselect, reset matching index to 'N' *****
+// ***** hold buttons; toggles: *****
+// off = darkgrey, holding="false"
+// on = ltgrey, holding="true" + disable colorpicker for swatch (hide <input type="color">)
 
 var $hold = document.querySelector('.hold-btn');
 $hold.addEventListener('click', holdBtnToggle);
 function holdBtnToggle(event) {
-  if ($hold.style.backgroundColor === 'rgb(41, 41, 41)') {
-    $hold.style.backgroundColor = 'rgb(196, 196, 196)';
+  if (this.getAttribute('holding') === 'true') {
+    this.setAttribute('holding', false);
+    $colorpicker.setAttribute('disabled', false);
   } else {
-  // if ($hold.getAttribute('aria-pressed') === false) {
-    // $hold.setAttribute('aria-pressed', true);
-    // $hold.style.backgroundColor = 'rgb(196, 196, 196)';
-  // } else {
-    // $hold.setAttribute('aria-pressed', false);
-    $hold.style.backgroundColor = 'rgb(41, 41, 41)';
+    this.setAttribute('holding', true);
+    $colorpicker.setAttribute('disabled', true);
   }
-  // if aria-pressed = false, bg = dkgrey & tempData.input[0] = 'N'
-  // if aria-pressed = true, bg = ltgrey & tempData.input[0] = [#, #, #] <-- small array made from $swatch1.style.backgroundColor.slice(3); ??
-  // not sure how that'll work bc that slice = (#, #, #) and i dont want the (), so prob more slicin' needed
 }
 
-var tempData = {
-  model: 'default',
-  input: ['N', 'N', 'N', 'N', 'N']
-};
-
-// ***** generate button: on click, generate a palette *****
+// ***** generate button: on click, generate a fresh palette *****
 //
 // listen for click, call genPalette
 var $gen = document.querySelector('.generate');
 $gen.addEventListener('click', genPalette);
 
-// send data obj to api, assign returned array to palette display
+// build data object for api, send it, assign returned array to palette display
 function genPalette(event) {
+
+  var tempData = {
+    model: 'default',
+    input: ['N', 'N', 'N', 'N', 'N']
+  };
+
+  // grab all the hold buttons and loop through them
+  var $heldColors = document.querySelectorAll('.hold-btn');
+  for (let i = 0; i < $heldColors.length; i++) {
+    // if held is selected, get bg color & assign to array
+    if ($heldColors[i].getAttribute('holding') === 'true') {
+      // .tC will need split & parse int
+      var colorcode = $heldColors[i].previousSibling.previousSibling.textContent;
+      var ccArray = colorcode.split(' ');
+      // console.log('ccArray: ', ccArray);
+      tempData.input[i] = ccArray;
+    } else {
+      // if held not selected, assign 'N' to array
+      tempData.input[i] = 'N';
+    }
+  }
+  // console.log('tempData: ', tempData);
 
   var url = 'http://colormind.io/api/';
   var data = tempData;
-  // var data = {
-  //   model: 'default',
-  //   input: ['N', 'N', 'N', 'N', 'N']
-  // };
 
   var http = new XMLHttpRequest();
 

@@ -146,6 +146,15 @@ footer {
   opacity: 0;
   width: 100%;
   height: 100%;
+  cursor: pointer;
+}
+
+#colorpicker[disabled="true"] {
+  visibility: hidden;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
 }
 
 .tools {
@@ -172,6 +181,10 @@ span {
   margin-top: 7px;
   margin-left: 15px;
   cursor: pointer;
+}
+
+.hold-btn[holding="true"] {
+  background-color: rgb(196, 196, 196);
 }
 
 .gen-save-btns {
@@ -286,6 +299,10 @@ span {
 @media screen and (max-width: 800px) {
   .instruct-bar {
     display: none;
+  }
+
+  span {
+    font-size: 0.7rem;
   }
 
   .name-row {
