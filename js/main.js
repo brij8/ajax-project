@@ -67,12 +67,10 @@ $colorpicker.onchange = function () {
 // var $hold = document.querySelector('.hold');
 // $hold
 
-// var tempData = {
-//   model: 'default',
-//   input: ['N', 'N', 'N', 'N', 'N']
-// };
-
-// then add 'var data = tempData' to genPalette ??
+var tempData = {
+  model: 'default',
+  input: ['N', 'N', 'N', 'N', 'N']
+};
 
 // ***** generate button: on click, generate a palette *****
 //
@@ -84,10 +82,11 @@ $gen.addEventListener('click', genPalette);
 function genPalette(event) {
 
   var url = 'http://colormind.io/api/';
-  var data = {
-    model: 'default',
-    input: ['N', 'N', 'N', 'N', 'N']
-  };
+  var data = tempData;
+  // var data = {
+  //   model: 'default',
+  //   input: ['N', 'N', 'N', 'N', 'N']
+  // };
 
   var http = new XMLHttpRequest();
 
