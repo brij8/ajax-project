@@ -98,8 +98,18 @@ function genPalette(event) {
     if ($heldColors[i].getAttribute('holding') === 'true') {
       // .tC will need split & parse int
       var colorcode = $heldColors[i].previousSibling.previousSibling.textContent;
-      var ccArray = colorcode.split(' ');
-      // console.log('ccArray: ', ccArray);
+      // console.log('colorcode: ', colorcode); // set of #s as strings
+      var ccStrArray = colorcode.split(' ');
+      // console.log('ccStrArray: ', ccStrArray); // array of #s as strings
+
+      var ccArray = [];
+      // parseInt needs to effect whole array not just 0th, use forEach ?
+      ccStrArray.forEach(item => {
+        ccArray.push(parseInt(item));
+      });
+      // var ccArray = parseInt();
+
+      // console.log('ccArray: ', ccArray); // array of #s as integers
       tempData.input[i] = ccArray;
     } else {
       // if held not selected, assign 'N' to array
