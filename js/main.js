@@ -1,3 +1,5 @@
+/* exported data */
+//
 // ***** upload button: on click open file picker  *****
 //
 // listen for click, call getFile to open file explorer
@@ -64,8 +66,23 @@ $colorpicker.onchange = function () {
 // ***** hold buttons: on click-select, assign swatch color code to matching index in input array *****
 // ***** hold buttons: on click-deselect, reset matching index to 'N' *****
 
-// var $hold = document.querySelector('.hold');
-// $hold
+var $hold = document.querySelector('.hold-btn');
+$hold.addEventListener('click', holdBtnToggle);
+function holdBtnToggle(event) {
+  if ($hold.style.backgroundColor === 'rgb(41, 41, 41)') {
+    $hold.style.backgroundColor = 'rgb(196, 196, 196)';
+  } else {
+  // if ($hold.getAttribute('aria-pressed') === false) {
+    // $hold.setAttribute('aria-pressed', true);
+    // $hold.style.backgroundColor = 'rgb(196, 196, 196)';
+  // } else {
+    // $hold.setAttribute('aria-pressed', false);
+    $hold.style.backgroundColor = 'rgb(41, 41, 41)';
+  }
+  // if aria-pressed = false, bg = dkgrey & tempData.input[0] = 'N'
+  // if aria-pressed = true, bg = ltgrey & tempData.input[0] = [#, #, #] <-- small array made from $swatch1.style.backgroundColor.slice(3); ??
+  // not sure how that'll work bc that slice = (#, #, #) and i dont want the (), so prob more slicin' needed
+}
 
 var tempData = {
   model: 'default',
