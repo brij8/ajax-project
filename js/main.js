@@ -1,4 +1,6 @@
-// event listener on upload button, open file explorer
+// ***** upload button: on click open file picker  *****
+//
+// listen for click, call getFile to open file explorer
 var $upload = document.querySelector('.upload');
 $upload.addEventListener('click', getFile);
 
@@ -16,23 +18,17 @@ const fileTypeOptions = {
 };
 
 async function getFile() {
-
   // assign img element to var
   var imgRef = document.querySelector('.src-img');
-
   try {
     // open file picker
     var [fileHandle] = await window.showOpenFilePicker(fileTypeOptions);
-
     // get file contents
     const srcImage = await fileHandle.getFile();
-
     // make a URL for image file on local dir
     var imgURL = URL.createObjectURL(srcImage);
-
     // assign that URL to src of img element
     imgRef.src = imgURL;
-
     // if user cancels upload, which generates an error
   } catch (e) {
     if (e instanceof DOMException) {
@@ -43,9 +39,48 @@ async function getFile() {
   }
 }
 
+// ***** color picker: click swatch to bring up picker
+// close picker to assign color to swatch & color-code to code span
+
+// grab the picker & the wrapper
+var $colorpicker = document.getElementById('colorpicker');
+var $swatch1 = document.querySelector('.color1');
+var $codes = document.querySelector('.codes');
+
+// picker.oninput (when selecting a color from picker)
+// picker event value assigned to wrapper background
+$colorpicker.oninput = function () {
+  $swatch1.style.backgroundColor = event.target.value;
+};
+
+// picker.onchange (when clicking away/closing picker)
+// picker value assigned to wrapper background
+$colorpicker.onchange = function () {
+  $swatch1.style.backgroundColor = $colorpicker.value;
+  // also assign the color-code to the 'codes' span
+  $codes.textContent = $swatch1.style.backgroundColor.slice(3);
+};
+
+// ***** hold buttons: on click-select, assign swatch color code to matching index in input array *****
+// ***** hold buttons: on click-deselect, reset matching index to 'N' *****
+
+// var $hold = document.querySelector('.hold');
+// $hold
+
+// var tempData = {
+//   model: 'default',
+//   input: ['N', 'N', 'N', 'N', 'N']
+// };
+
+// then add 'var data = tempData' to genPalette ??
+
+// ***** generate button: on click, generate a palette *****
+//
+// listen for click, call genPalette
 var $gen = document.querySelector('.generate');
 $gen.addEventListener('click', genPalette);
 
+// send data obj to api, assign returned array to palette display
 function genPalette(event) {
 
   var url = 'http://colormind.io/api/';
