@@ -142,11 +142,6 @@ footer {
   background-color: rgb(41 40 52);
 }
 
-/* #colorpicker1,
-#colorpicker2,
-#colorpicker3,
-#colorpicker4,
-#colorpicker5,  */
 .col-pick {
   opacity: 0;
   width: 100%;
@@ -156,21 +151,29 @@ footer {
 
 .disabled {
   visibility: hidden;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
 }
 
 .enabled {
   visibility: visible;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
 }
 
 .tools {
   display: flex;
-  flex-basis: 20%;
+  flex-direction: column;
+  align-items: center;
 }
 
 .codes {
-  margin-top: 10px;
-  margin-left: 10px;
-  color: rgba(196, 196, 196, 1);
+  margin-top: 5px;
+  color: rgb(196, 196, 196);
 }
 
 span {
@@ -182,14 +185,13 @@ span {
 .hold-btn3,
 .hold-btn4,
 .hold-btn5 {
-  width: 20px;
+  width: 60px;
   height: 20px;
-  border: 2px solid rgb(196, 196, 196);
+  border: 2px solid rgb(106, 106, 106);
   background-color: rgb(41 41 41);
   border-radius: 50px;
-  margin-top: 7px;
-  margin-left: 15px;
   cursor: pointer;
+  margin-top: 5px;
 }
 
 .hold-btn1[holding="true"],
@@ -197,7 +199,7 @@ span {
 .hold-btn3[holding="true"],
 .hold-btn4[holding="true"],
 .hold-btn5[holding="true"] {
-  background-color: rgb(196, 196, 196);
+  background-color: rgb(88, 88, 88);
 }
 
 .gen-save-btns {
@@ -387,7 +389,9 @@ span {
   }
 
   .tools {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .generate {
@@ -402,8 +406,8 @@ span {
   }
 
   .codes {
-    margin-top: 10px;
-    margin-left: 5px;
+    margin-top: 5px;
+    color: rgba(196, 196, 196, 1);
   }
 
   span {

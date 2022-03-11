@@ -51,66 +51,32 @@ var $colorpicker3 = document.getElementById('colorpicker3');
 var $colorpicker4 = document.getElementById('colorpicker4');
 var $colorpicker5 = document.getElementById('colorpicker5');
 
-// grab wrappers
-// var $swatch1 = document.querySelector('.color1');
-// var $swatch2 = document.querySelector('.color2');
-// var $swatch3 = document.querySelector('.color3');
-// var $swatch4 = document.querySelector('.color4');
-// var $swatch5 = document.querySelector('.color5');
-
-// grab code spans
-// var $code1 = document.querySelector('.code1');
-// var $code2 = document.querySelector('.code2');
-// var $code3 = document.querySelector('.code3');
-// var $code4 = document.querySelector('.code4');
-// var $code5 = document.querySelector('.code5');
-// // var $codes = document.querySelector('.codes');
-
+// listen for input on each picker element
 $colorpicker1.addEventListener('input', setColor);
 $colorpicker2.addEventListener('input', setColor);
 $colorpicker3.addEventListener('input', setColor);
 $colorpicker4.addEventListener('input', setColor);
 $colorpicker5.addEventListener('input', setColor);
 
-function setColor(event) {
-  // set parent bg color = etv
-  this.parentElement.style.backgroundColor = event.target.value;
-}
-
-// picker.oninput (open and then when selecting a color from picker)
-// picker event value assigned to wrapper background
-
-// $colorpicker.oninput = function () {
-//   $swatch1.style.backgroundColor = event.target.value;
-// };
-
-// picker.onchange (when clicking away/closing picker)
-// assign the color-code to the 'codes' span
-
+// listen for change (when clicking away/closing picker) on each picker element
 $colorpicker1.addEventListener('change', setCode);
 $colorpicker2.addEventListener('change', setCode);
 $colorpicker3.addEventListener('change', setCode);
 $colorpicker4.addEventListener('change', setCode);
 $colorpicker5.addEventListener('change', setCode);
 
-// tries to grab the parents siblings first child (a span) to change text. fails. gonna change after moving html around for palette (colors & tools)
+// on input, set .color# bg color to input color value
+function setColor(event) {
+  this.parentElement.style.backgroundColor = event.target.value;
+}
+
+// on change/close, assign the color-code to the 'codes' span
 function setCode(event) {
   this.parentElement.nextSibling.nextSibling.childNodes[1].textContent =
   this.parentElement.style.backgroundColor.slice(4, this.parentElement.style.backgroundColor.length - 1);
 }
 
-// $colorpicker.onchange = function () {
-//   $codes.textContent = $swatch1.style.backgroundColor.slice(4, $swatch1.style.backgroundColor.length - 1);
-// };
-
-// ***** hold buttons; toggles: *****
-// off = darkgrey, holding="false"
-// on = ltgrey, holding="true" + disable colorpicker for swatch (hide <input type="color">)
-
-// var $hold = document.querySelectorAll('.hold-btn');
-// $hold.forEach(item => {
-//   addEventListener('click', holdBtnToggle);
-// });
+// ***** hold button toggles: *****
 
 var $hold1 = document.querySelector('.hold-btn1');
 var $hold2 = document.querySelector('.hold-btn2');
@@ -127,15 +93,15 @@ $hold5.addEventListener('click', holdBtnToggle);
 function holdBtnToggle(event) {
   if (this.getAttribute('holding') === 'true') {
     this.setAttribute('holding', false);
-    this.$colorpicker.className = 'enabled';
+    this.parentElement.previousSibling.previousSibling.childNodes[1].className = 'enabled';
   } else {
     this.setAttribute('holding', true);
-    this.$colorpicker.className = 'disabled';
+    this.parentElement.previousSibling.previousSibling.childNodes[1].className = 'disabled';
   }
 }
 
 // ***** generate button: on click, generate a fresh palette *****
-//
+
 // listen for click, call genPalette
 var $gen = document.querySelector('.generate');
 $gen.addEventListener('click', genPalette);
@@ -149,7 +115,7 @@ function genPalette(event) {
   };
 
   // grab all the hold buttons and loop through them
-  var $heldColors = document.querySelectorAll('.hold-btn');
+  var $heldColors = document.querySelectorAll('.hold-button');
   for (let i = 0; i < $heldColors.length; i++) {
     // if held is selected, get bg color & assign to variable (is a string of numbers)
     if ($heldColors[i].getAttribute('holding') === 'true') {
