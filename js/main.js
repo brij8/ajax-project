@@ -1,3 +1,5 @@
+/* exported data */
+//
 // ***** upload button: on click open file picker  *****
 //
 // listen for click, call getFile to open file explorer
@@ -39,55 +41,102 @@ async function getFile() {
   }
 }
 
-// ***** color picker: click swatch to bring up picker
+// ***** color picker: click swatch to bring up picker *****
 // close picker to assign color to swatch & color-code to code span
 
-// grab the picker & the wrapper
-var $colorpicker = document.getElementById('colorpicker');
-var $swatch1 = document.querySelector('.color1');
-var $codes = document.querySelector('.codes');
+// grab the pickers
+var $colorpicker1 = document.getElementById('colorpicker1');
+var $colorpicker2 = document.getElementById('colorpicker2');
+var $colorpicker3 = document.getElementById('colorpicker3');
+var $colorpicker4 = document.getElementById('colorpicker4');
+var $colorpicker5 = document.getElementById('colorpicker5');
 
-// picker.oninput (when selecting a color from picker)
-// picker event value assigned to wrapper background
-$colorpicker.oninput = function () {
-  $swatch1.style.backgroundColor = event.target.value;
-};
+// listen for input on each picker element
+$colorpicker1.addEventListener('input', setColor);
+$colorpicker2.addEventListener('input', setColor);
+$colorpicker3.addEventListener('input', setColor);
+$colorpicker4.addEventListener('input', setColor);
+$colorpicker5.addEventListener('input', setColor);
 
-// picker.onchange (when clicking away/closing picker)
-// picker value assigned to wrapper background
-$colorpicker.onchange = function () {
-  $swatch1.style.backgroundColor = $colorpicker.value;
-  // also assign the color-code to the 'codes' span
-  $codes.textContent = $swatch1.style.backgroundColor.slice(3);
-};
+// listen for change (when clicking away/closing picker) on each picker element
+$colorpicker1.addEventListener('change', setCode);
+$colorpicker2.addEventListener('change', setCode);
+$colorpicker3.addEventListener('change', setCode);
+$colorpicker4.addEventListener('change', setCode);
+$colorpicker5.addEventListener('change', setCode);
 
-// ***** hold buttons: on click-select, assign swatch color code to matching index in input array *****
-// ***** hold buttons: on click-deselect, reset matching index to 'N' *****
+// on input, set .color# bg color to input color value
+function setColor(event) {
+  this.parentElement.style.backgroundColor = event.target.value;
+}
 
-// var $hold = document.querySelector('.hold');
-// $hold
+// on change/close, assign the color-code to the 'codes' span
+function setCode(event) {
+  this.parentElement.nextSibling.nextSibling.childNodes[1].textContent =
+  this.parentElement.style.backgroundColor.slice(4, this.parentElement.style.backgroundColor.length - 1);
+}
 
-// var tempData = {
-//   model: 'default',
-//   input: ['N', 'N', 'N', 'N', 'N']
-// };
+// ***** hold button toggles: *****
 
-// then add 'var data = tempData' to genPalette ??
+var $hold1 = document.querySelector('.hold-btn1');
+var $hold2 = document.querySelector('.hold-btn2');
+var $hold3 = document.querySelector('.hold-btn3');
+var $hold4 = document.querySelector('.hold-btn4');
+var $hold5 = document.querySelector('.hold-btn5');
 
-// ***** generate button: on click, generate a palette *****
-//
+$hold1.addEventListener('click', holdBtnToggle);
+$hold2.addEventListener('click', holdBtnToggle);
+$hold3.addEventListener('click', holdBtnToggle);
+$hold4.addEventListener('click', holdBtnToggle);
+$hold5.addEventListener('click', holdBtnToggle);
+
+function holdBtnToggle(event) {
+  if (this.getAttribute('holding') === 'true') {
+    this.setAttribute('holding', false);
+    this.parentElement.previousSibling.previousSibling.childNodes[1].className = 'enabled';
+  } else {
+    this.setAttribute('holding', true);
+    this.parentElement.previousSibling.previousSibling.childNodes[1].className = 'disabled';
+  }
+}
+
+// ***** generate button: on click, generate a fresh palette *****
+
 // listen for click, call genPalette
 var $gen = document.querySelector('.generate');
 $gen.addEventListener('click', genPalette);
 
-// send data obj to api, assign returned array to palette display
+// build data object for api, send it, assign returned array to palette display
 function genPalette(event) {
 
-  var url = 'http://colormind.io/api/';
-  var data = {
+  var tempData = {
     model: 'default',
     input: ['N', 'N', 'N', 'N', 'N']
   };
+
+  // grab all the hold buttons and loop through them
+  var $heldColors = document.querySelectorAll('.hold-button');
+  for (let i = 0; i < $heldColors.length; i++) {
+    // if held is selected, get bg color & assign to variable (is a string of numbers)
+    if ($heldColors[i].getAttribute('holding') === 'true') {
+      var colorcode = $heldColors[i].previousSibling.previousSibling.textContent;
+      // split string to make an array of #s as strings
+      var ccStrArray = colorcode.split(' ');
+      // parseInt each index, push to new array of #s as integers
+      var ccIntArray = [];
+      ccStrArray.forEach(item => {
+        ccIntArray.push(parseInt(item));
+      });
+      // array of #s as integers asigned to tempData[i]
+      tempData.input[i] = ccIntArray;
+    } else {
+      // if held not selected, assign 'N' to array
+      tempData.input[i] = 'N';
+    }
+  }
+
+  var url = 'http://colormind.io/api/';
+  var data = tempData;
 
   var http = new XMLHttpRequest();
 

@@ -79,7 +79,7 @@ footer {
 
 /* ------------- main ------------ */
 
-button {
+.ui-btn {
   width: 115px;
   height: 35px;
   color: rgba(115, 115, 115, 1);
@@ -89,7 +89,7 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+.ui-btn:hover {
   color: rgba(196, 196, 196, 1);
   background-color: rgb(80, 78, 78);
 }
@@ -142,34 +142,64 @@ button:hover {
   background-color: rgb(41 40 52);
 }
 
-#colorpicker {
+.col-pick {
   opacity: 0;
   width: 100%;
   height: 100%;
+  cursor: pointer;
+}
+
+.disabled {
+  visibility: hidden;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.enabled {
+  visibility: visible;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
 }
 
 .tools {
   display: flex;
-  flex-basis: 20%;
+  flex-direction: column;
+  align-items: center;
 }
 
 .codes {
-  margin-top: 10px;
-  margin-left: 10px;
-  color: rgba(196, 196, 196, 1);
+  margin-top: 5px;
+  color: rgb(196, 196, 196);
 }
 
 span {
   font-size: 1rem;
 }
 
-.hold {
-  width: 20px;
+.hold-btn1,
+.hold-btn2,
+.hold-btn3,
+.hold-btn4,
+.hold-btn5 {
+  width: 60px;
   height: 20px;
-  border: 2px solid rgba(196, 196, 196, 1);
+  border: 2px solid rgb(106, 106, 106);
+  background-color: rgb(41 41 41);
   border-radius: 50px;
-  margin-top: 7px;
-  margin-left: 15px;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+.hold-btn1[holding="true"],
+.hold-btn2[holding="true"],
+.hold-btn3[holding="true"],
+.hold-btn4[holding="true"],
+.hold-btn5[holding="true"] {
+  background-color: rgb(88, 88, 88);
 }
 
 .gen-save-btns {
@@ -286,6 +316,10 @@ span {
     display: none;
   }
 
+  span {
+    font-size: 0.7rem;
+  }
+
   .name-row {
     border-bottom-width: 1px;
     border-bottom-style: solid;
@@ -355,7 +389,9 @@ span {
   }
 
   .tools {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .generate {
@@ -370,8 +406,8 @@ span {
   }
 
   .codes {
-    margin-top: 10px;
-    margin-left: 5px;
+    margin-top: 5px;
+    color: rgba(196, 196, 196, 1);
   }
 
   span {
