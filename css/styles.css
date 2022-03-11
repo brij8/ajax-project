@@ -233,9 +233,6 @@ span {
 }
 
 /* ------------ img-preview --------------- */
-.img-preview {
-  /* height: 350px; */
-}
 
 .line {
   width: 70%;
@@ -286,6 +283,12 @@ span {
 
 .src-img {
   width: 100%;
+}
+
+/* ------------ modals --------------------- */
+
+.save-modal {
+  visibility: hidden;
 }
 
 /* ------------ saved-palettes ------------- */
@@ -348,20 +351,6 @@ span {
 
   .name {
     margin-left: -220px;
-  }
-
-  .name-row {
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-image:
-      linear-gradient(
-        0.25turn,
-        #ff000042,
-        #ffa5003b,
-        #ffff0036,
-        #00800033,
-        #0000ff47
-      ) 1;
   }
 
   .line {

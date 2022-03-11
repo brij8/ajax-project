@@ -22,7 +22,6 @@
         <p class="app-subtitle">powered by colormind.io</p>
       </div>
     </div>
-    <!-- the whole 'instruction bar' stuff should all go away on mobile scaling -->
     <div class="row instruct-bar">
       <div class="instructions">
         <p class="instruct">
@@ -36,9 +35,7 @@
   <main>
     <!-- color swatches and generate & save buttons -->
     <section class="row palette">
-
       <div class="colors">
-
         <div class="c-wrap">
           <div class="color1">
             <input type="color" value="#3C2B2B" id="colorpicker1" class="col-pick" />
@@ -48,7 +45,6 @@
             <button type="button" class="hold-btn1 hold-button" />
           </div>
         </div>
-
         <div class="c-wrap">
           <div class="color2">
             <input type="color" value="#463A32" id="colorpicker2" class="col-pick" />
@@ -58,7 +54,6 @@
             <button type="button" class="hold-btn2 hold-button" />
           </div>
         </div>
-
         <div class="c-wrap">
           <div class="color3">
             <input type="color" value="#524F3D" id="colorpicker3" class="col-pick" />
@@ -68,7 +63,6 @@
             <button type="button" class="hold-btn3 hold-button" />
           </div>
         </div>
-
         <div class="c-wrap">
           <div class="color4">
             <input type="color" value="#334531" id="colorpicker4" class="col-pick" />
@@ -78,7 +72,6 @@
             <button type="button" class="hold-btn4 hold-button" />
           </div>
         </div>
-
         <div class="c-wrap">
           <div class="color5">
             <input type="color" value="#292834" id="colorpicker5" class="col-pick" />
@@ -88,17 +81,16 @@
             <button type="button" class="hold-btn5 hold-button" />
           </div>
         </div>
-
-
       </div>
-
-
-
-
       <div class="gen-save-btns">
         <button class="ui-btn generate">generate</button>
         <button class="ui-btn save">save</button>
       </div>
+
+      <div class="save-modal">
+
+      </div>
+
     </section>
 
     <!-- upload button & source image reference -->
@@ -122,7 +114,6 @@
     </section>
 
   </main>
-
 
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
