@@ -44,36 +44,93 @@ async function getFile() {
 // ***** color picker: click swatch to bring up picker *****
 // close picker to assign color to swatch & color-code to code span
 
-// grab the picker & the wrapper
-var $colorpicker = document.getElementById('colorpicker');
-var $swatch1 = document.querySelector('.color1');
-var $codes = document.querySelector('.codes');
+// grab the pickers
+var $colorpicker1 = document.getElementById('colorpicker1');
+var $colorpicker2 = document.getElementById('colorpicker2');
+var $colorpicker3 = document.getElementById('colorpicker3');
+var $colorpicker4 = document.getElementById('colorpicker4');
+var $colorpicker5 = document.getElementById('colorpicker5');
+
+// grab wrappers
+// var $swatch1 = document.querySelector('.color1');
+// var $swatch2 = document.querySelector('.color2');
+// var $swatch3 = document.querySelector('.color3');
+// var $swatch4 = document.querySelector('.color4');
+// var $swatch5 = document.querySelector('.color5');
+
+// grab code spans
+// var $code1 = document.querySelector('.code1');
+// var $code2 = document.querySelector('.code2');
+// var $code3 = document.querySelector('.code3');
+// var $code4 = document.querySelector('.code4');
+// var $code5 = document.querySelector('.code5');
+// // var $codes = document.querySelector('.codes');
+
+$colorpicker1.addEventListener('input', setColor);
+$colorpicker2.addEventListener('input', setColor);
+$colorpicker3.addEventListener('input', setColor);
+$colorpicker4.addEventListener('input', setColor);
+$colorpicker5.addEventListener('input', setColor);
+
+function setColor(event) {
+  // set parent bg color = etv
+  this.parentElement.style.backgroundColor = event.target.value;
+}
 
 // picker.oninput (open and then when selecting a color from picker)
 // picker event value assigned to wrapper background
-$colorpicker.oninput = function () {
-  $swatch1.style.backgroundColor = event.target.value;
-};
+
+// $colorpicker.oninput = function () {
+//   $swatch1.style.backgroundColor = event.target.value;
+// };
 
 // picker.onchange (when clicking away/closing picker)
 // assign the color-code to the 'codes' span
-$colorpicker.onchange = function () {
-  $codes.textContent = $swatch1.style.backgroundColor.slice(4, $swatch1.style.backgroundColor.length - 1);
-};
+
+$colorpicker1.addEventListener('change', setCode);
+$colorpicker2.addEventListener('change', setCode);
+$colorpicker3.addEventListener('change', setCode);
+$colorpicker4.addEventListener('change', setCode);
+$colorpicker5.addEventListener('change', setCode);
+
+// tries to grab the parents siblings first child (a span) to change text. fails. gonna change after moving html around for palette (colors & tools)
+function setCode(event) {
+  this.parentElement.nextSibling.nextSibling.childNodes[1].textContent =
+  this.parentElement.style.backgroundColor.slice(4, this.parentElement.style.backgroundColor.length - 1);
+}
+
+// $colorpicker.onchange = function () {
+//   $codes.textContent = $swatch1.style.backgroundColor.slice(4, $swatch1.style.backgroundColor.length - 1);
+// };
 
 // ***** hold buttons; toggles: *****
 // off = darkgrey, holding="false"
 // on = ltgrey, holding="true" + disable colorpicker for swatch (hide <input type="color">)
 
-var $hold = document.querySelector('.hold-btn');
-$hold.addEventListener('click', holdBtnToggle);
+// var $hold = document.querySelectorAll('.hold-btn');
+// $hold.forEach(item => {
+//   addEventListener('click', holdBtnToggle);
+// });
+
+var $hold1 = document.querySelector('.hold-btn1');
+var $hold2 = document.querySelector('.hold-btn2');
+var $hold3 = document.querySelector('.hold-btn3');
+var $hold4 = document.querySelector('.hold-btn4');
+var $hold5 = document.querySelector('.hold-btn5');
+
+$hold1.addEventListener('click', holdBtnToggle);
+$hold2.addEventListener('click', holdBtnToggle);
+$hold3.addEventListener('click', holdBtnToggle);
+$hold4.addEventListener('click', holdBtnToggle);
+$hold5.addEventListener('click', holdBtnToggle);
+
 function holdBtnToggle(event) {
   if (this.getAttribute('holding') === 'true') {
     this.setAttribute('holding', false);
-    $colorpicker.setAttribute('disabled', false);
+    this.$colorpicker.className = 'enabled';
   } else {
     this.setAttribute('holding', true);
-    $colorpicker.setAttribute('disabled', true);
+    this.$colorpicker.className = 'disabled';
   }
 }
 
@@ -94,29 +151,23 @@ function genPalette(event) {
   // grab all the hold buttons and loop through them
   var $heldColors = document.querySelectorAll('.hold-btn');
   for (let i = 0; i < $heldColors.length; i++) {
-    // if held is selected, get bg color & assign to array
+    // if held is selected, get bg color & assign to variable (is a string of numbers)
     if ($heldColors[i].getAttribute('holding') === 'true') {
-      // .tC will need split & parse int
       var colorcode = $heldColors[i].previousSibling.previousSibling.textContent;
-      // console.log('colorcode: ', colorcode); // set of #s as strings
+      // split string to make an array of #s as strings
       var ccStrArray = colorcode.split(' ');
-      // console.log('ccStrArray: ', ccStrArray); // array of #s as strings
-
-      var ccArray = [];
-      // parseInt needs to effect whole array not just 0th, use forEach ?
+      // parseInt each index, push to new array of #s as integers
+      var ccIntArray = [];
       ccStrArray.forEach(item => {
-        ccArray.push(parseInt(item));
+        ccIntArray.push(parseInt(item));
       });
-      // var ccArray = parseInt();
-
-      // console.log('ccArray: ', ccArray); // array of #s as integers
-      tempData.input[i] = ccArray;
+      // array of #s as integers asigned to tempData[i]
+      tempData.input[i] = ccIntArray;
     } else {
       // if held not selected, assign 'N' to array
       tempData.input[i] = 'N';
     }
   }
-  // console.log('tempData: ', tempData);
 
   var url = 'http://colormind.io/api/';
   var data = tempData;
